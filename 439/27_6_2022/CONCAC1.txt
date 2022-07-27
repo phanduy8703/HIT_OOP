@@ -1,0 +1,3 @@
+7 6 5 8 9 4 
+Mang sau khi sap xep la :
+9 8 7 6 5 4 
