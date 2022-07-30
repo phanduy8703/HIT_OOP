@@ -14,6 +14,7 @@ class NCC
     public:
         void nhap();
         void xuat();
+
 };
 
 class SanPham
@@ -32,6 +33,7 @@ class SanPham
         friend void chen(Phieu &a, SanPham x);
         friend void xoa(Phieu &a, int pos);
         friend void doiSoLuong(Phieu a);
+
 };
 
 class Phieu
@@ -49,6 +51,7 @@ class Phieu
         friend void chen(Phieu &a, SanPham x);
         friend void xoa(Phieu &a, int pos);
         friend void doiSoLuong(Phieu a);
+
 };
 
 void NCC::nhap()
@@ -57,12 +60,14 @@ void NCC::nhap()
     cout<<"\nNhap ten NCC: "; fflush(stdin); gets(tenNCC);
     cout<<"\nNhap dia chi NCC: "; fflush(stdin); gets(diaChi);
     cout<<"\nNhap SDT: "; fflush(stdin); gets(soDT);
+
 }
 
 void NCC::xuat()
 {
     cout<<setw(20)<<left<<"Ma Nha Cung Cap: "<<setw(20)<<maNCC<<"Ten Nha Cung Cap: "<<setw(20)<<left<<tenNCC<<endl;
     cout<<setw(20)<<left<<"Dia Chi: "<<setw(20)<<diaChi<<"SDT: "<<setw(20)<<left<<soDT<<endl;
+
 }
 
 void SanPham::nhap()
@@ -71,16 +76,19 @@ void SanPham::nhap()
     cout<<"\nNhap ten san pham: "; fflush(stdin); gets(tenSP);
     cout<<"\nNhap so luong: "; cin>>soLuong;
     cout<<"\nNhap don gia: "; cin>>donGia;
+
 }
 
 double SanPham::thanhTien()
 {
     return soLuong*donGia;
+
 }
 
 void SanPham::xuat()
 {
     cout<<setw(15)<<left<<maSP<<setw(15)<<tenSP<<setw(15)<<soLuong<<setw(15)<<donGia<<thanhTien()<<endl;
+
 }
 
 void Phieu::nhap()
@@ -94,7 +102,9 @@ void Phieu::nhap()
     {
         cout<<"San Pham "<<i+1<<endl;
         y[i].nhap();
+
     }
+
 }
 
 void Phieu::xuat()
@@ -108,16 +118,20 @@ void Phieu::xuat()
     for (int i = 0; i < n; i++)
     {
         y[i].xuat();
+
     }
     double tong=0;
-     for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         tong += y[i].thanhTien();
+
     }
     cout<<"--------------------------------------------------------------------------"<<endl;
     cout<<"\t\t\tTONG"<<"\t\t\t\t"<<tong<<endl;
+
 }
 
+//Sắp xếp danh sách sản phẩm giảm dần theo thành tiền. 
 void sapXep(Phieu a)
 {
     for (int i = 0; i < a.n; i++)
@@ -127,22 +141,30 @@ void sapXep(Phieu a)
             if (a.y[i].thanhTien()<a.y[j].thanhTien())
             {
                 swap(a.y[i],a.y[j]);
-            }    
-        }           
-    }   
+
+            } 
+
+        } 
+
+    }  
+
 }
 
+//Nhập một sản phẩm bất kì và chèn vào vị trí đầu tiên trong danh sách sản phẩm.
 void chen(Phieu &a, SanPham x)
 {
     a.y = (SanPham*)realloc(a.y, (a.n+1)*sizeof(SanPham));
     for (int i = a.n; i >= 0; i--)
     {
         a.y[i]=a.y[i-1];
+
     }
     a.y[0]=x;
     a.n++;  
+
 }
 
+//Xóa 1 sản phẩm tại vị trí bất kỳ(0 < pos <= n).
 void xoa(Phieu &a, int pos)
 {
     for (int i = pos -1 ; i < a.n-1; i++)
@@ -150,10 +172,11 @@ void xoa(Phieu &a, int pos)
         a.y[i]=a.y[i+1];
     }
     a.y = (SanPham*)realloc(a.y, (a.n-1)*sizeof(SanPham));
-    a.n--;
-       
+    a.n--;       
+
 }
 
+//Thay đổi những sản phẩm nào có số lượng < 10 thành 10.
 void doiSoLuong(Phieu a)
 {
     for (int i = 0; i < a.n; i++)
@@ -162,7 +185,9 @@ void doiSoLuong(Phieu a)
         {
             a.y[i].soLuong = 10;
         } 
+
     }
+
 }
 
 int main()
@@ -187,4 +212,5 @@ int main()
     doiSoLuong(a);
     a.xuat();
     return 0;
+
 }
