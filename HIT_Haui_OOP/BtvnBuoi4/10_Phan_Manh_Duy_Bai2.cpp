@@ -175,7 +175,7 @@ void kiemTraRau(Phieu a)
 
 void xoa(Phieu &a)
 {
-    for(int i=0; i<a.n; )
+    for(int i = 0; i < a.n; )
     {
         if(a.y[i].soLuong<5)
         {
